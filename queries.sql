@@ -1,97 +1,46 @@
-/*Queries that provide answers to the questions from all projects.*/
+SELECT * FROM animals WHERE name like '%mon'
+SELECT name FROM animals WHERE date_part('year', date_of_birth) >= 2016 and date_part('year', date_of_birth) <= 2019
+SELECT name FROM animals WHERE neutered = true AND escaped_attempts < 3
+SELECT date_of_birth FROM animals WHERE name = 'Agumon' OR name = 'Pikachu'
+SELECT name, escaped_attempts FROM animals WHERE weight_kg > 10.5
+SELECT * FROM animals WHERE neutered = true
+SELECT * FROM animals WHERE name != 'Gabumon' OR SELECT * FROM animals WHERE name <> 'Gabumon'
+SELECT * FROM animals WHERE weight_kg >= 10.4 AND weight_kg <= 17.3
+/* DAY TWO*/
 
-/*Find all animals whose name ends in "mon".*/
-SELECT * from animals WHERE name like '%mon';
-/*List the name of all animals born between 2016 and 2019.*/
-SELECT name from animals WHERE date_of_birth BETWEEN '2016-1-1' AND '2019-1-1';
-/*List the name of all animals that are neutered and have less than 3 escape attempts.*/
-SELECT name from animals WHERE neutered=true AND escape_attempts < 3;
-/*List the date of birth of all animals named either "Agumon" or "Pikachu".*/
-SELECT date_of_birth FROM animals WHERE name LIKE 'Agumon' OR name LIKE 'Pikachu';
-/*List name and escape attempts of animals that weigh more than 10.5kg*/
-SELECT name, escape_attempts FROM animals WHERE weight_kg > 10.5;
-/*Find all animals that are neutered.*/
-SELECT * FROM animals WHERE neutered = true;
-/*Find all animals not named Gabumon.*/
-SELECT * FROM animals WHERE name NOT LIKE 'Gabumon';
-/*Find all animals with a weight between 10.4kg and 17.3kg (including the animals with the weights that equals precisely 10.4kg or 17.3kg)*/
-SELECT * FROM animals WHERE weight_kg >= 10.4 AND weight_kg <= 17.3;
-
-/*day-2*/
-/*transactions*/
-
-/*transaction-1*/
-begin;
-
-update animals
-set species = 'unspecified';
-
-select * from animals;
-
-rollback;
-
-/*transaction-2*/
 BEGIN;
-UPDATE animals
-SET species = 'digimon'
-WHERE species LIKE '%mon';
+UPDATE animals SET species = 'unspecified';
+SELECT * FROM animals
 
-UPDATE animals
-SET species = 'pokemon'
-WHERE species IS NULL;
+ROLLBACK;
+SELECT * FROM animals
 
-SELECT * FROM animals;
-
+BEGIN;
+UPDATE animals SET species = 'digimon' WHERE name LIKE '%mon';
+UPDATE animals SET species = 'pokemon' WHERE species IS NULL;
 COMMIT;
+SELECT * FROM animals
 
-/*transaction-3*/
 BEGIN;
 DELETE FROM animals;
-SELECT * FROM animals;
 ROLLBACK;
-SELECT * FROM animals;
+SELECT * FROM animals
 
-/*transaction-4*/
 BEGIN;
-DELETE FROM animals;
-SELECT * FROM animals;
-ROLLBACK;
-SELECT * FROM animals;
+DELETE FROM animals WHERE date_of_birth > '2022-01-01';
+SAVEPOINT SP1;
+UPDATE animals SET weight_kg = weight_kg * (-1);
+ROLLBACK TO SP1;
+SELECT * FROM animals
 
-/*transaction-5*/
-BEGIN;
-DELETE FROM animals
-WHERE date_of_birth > '2022-01-01';
-SAVEPOINT del_animals_before_jan;
-UPDATE animals
-SET weight_kg = (weight_kg * -1);
-ROLLBACK TO del_animals_before_jan;
-UPDATE animals
-SET weight_kg = (weight_kg * -1)
-WHERE weight_kg < 0;
-SELECT * FROM animals;
+UPDATE animals SET weight_kg = weight_kg * (-1) WHERE weight_kg < 0;
 COMMIT;
-SELECT * FROM animals;
+SELECT * FROM animals
 
-/*Aggregates*/
-SELECT COUNT(*) AS Total FROM animals;
-
-SELECT COUNT(*) AS Never_escaped_count 
-FROM animals
-WHERE escape_attempts = 0;
-
-SELECT AVG(weight_kg) AS Averege_weight
-FROM animals;
-
-SELECT neutered, SUM(escape_attempts) AS "Escapes_by_neutered" 
-FROM animals 
-GROUP BY neutered;
-
-SELECT species, MAX(weight_kg) AS "Maximum Weight", MIN(weight_kg) AS "Minimum Weight" 
-FROM animals 
-GROUP BY species;
-
-SELECT species, AVG(escape_attempts) AS "Average_Escape" 
-FROM animals 
-WHERE date_of_birth BETWEEN DATE '1990-01-01' AND DATE '2000-12-31' 
-GROUP BY species; 
+SELECT count(*) FROM animals
+SELECT count(*) FROM animals where escaped_attempts = 0;
+SELECT AVG(weight_kg) FROM animals;
+SELECT neutered, MAX(escaped_attempts) as excaped_attempts FROM animals GROUP BY neutered
+SELECT species, MIN(weight_kg) as minWeight, MAX(weight_kg) as maxWeight FROM animals GROUP BY species
+SELECT species, AVG(escaped_attempts) as avgEscapes FROM animals WHERE date_part('year', date_of_birth) 
+BETWEEN 1990 AND 2000 GROUP BY species

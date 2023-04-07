@@ -77,9 +77,9 @@ This repository includes files with plain SQL that can be used to recreate a dat
 
 > Describe between 1-3 key features of the application.
 
-- **[key_feature_1]**
-- **[key_feature_2]**
-- **[key_feature_3]**
+- Add the join to select items from table
+- Add the IN sql query statment
+- Add the BETWEEN sql query statment
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
