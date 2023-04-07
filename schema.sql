@@ -7,3 +7,7 @@ escape_attempts INT DEFAULT 0,
 neutered BOOLEAN,
 weight_kg DECIMAL
 );
+
+/*day-2*/
+ALTER TABLE animals
+ADD species VARCHAR(255);
