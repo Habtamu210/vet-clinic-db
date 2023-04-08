@@ -77,9 +77,9 @@ This repository includes files with plain SQL that can be used to recreate a dat
 
 > Describe between 1-3 key features of the application.
 
-- **[key_feature_1]**
-- **[key_feature_2]**
-- **[key_feature_3]**
+- **[Commands to create a database for the vet clinic]**
+- **[Commands to insert data into the database animals table]**
+- **[A list of queries to find relevant records]**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -105,14 +105,6 @@ To get a local copy up and running, follow these steps.
 
 In order to run this project you need:
 
-<!--
-Example command:
-
-```sh
- gem install rails
-```
- -->
-
 ### Setup
 
 ### Clone this repository to your desired folder:
@@ -121,37 +113,6 @@ Example command:
   cd vet-clinic-db
   git clone https://github.com/Habtamu210/vet-clinic-db
 ```
-
-### Install
-
-Install this project with:
-
-<!--
-Example command:
-
-```sh
-  cd my-project
-  gem install
-```
---->
-
-### Usage
-
-To run the project, execute the following command:
-
-### Run tests
-
-To run tests, run the following command:
-
-### Deployment
-
-You can deploy this project using:
-
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
-
-<!-- AUTHORS -->
-
 ## 👥 Authors <a name="authors"></a>
 
 > Mention all of the collaborators of this project.
@@ -164,17 +125,6 @@ You can deploy this project using:
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- FUTURE FEATURES -->
-
-## 🔭 Future Features <a name="future-features"></a>
-
-> Describe 1 - 3 features you will add to the project.
-
-- [ ] **Add the join sql query to select items from table**
-- [ ] **Add the IN sql query statment**
-- [ ] **Add the BETWEEN sql query statment**
-
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- CONTRIBUTING -->
 
