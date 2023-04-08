@@ -100,7 +100,6 @@ GROUP BY species;
 
 /*day-3*/
 --joins
---joins
 SELECT name 
 FROM animals a
 JOIN owners o ON a.owner_id = o.id 
